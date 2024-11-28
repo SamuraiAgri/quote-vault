@@ -1,0 +1,29 @@
+@extends('layout')
+
+@section('title', $category->name)
+
+@section('content')
+    <div class="container mx-auto px-4">
+        <!-- カテゴリ名 -->
+        <h1 class="text-3xl font-bold text-center mb-6">{{ $category->name }}</h1>
+
+        <!-- 名言一覧 -->
+        <h2 class="text-2xl font-semibold mb-4">名言一覧</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            @foreach($category->quotes as $quote)
+                <div class="bg-white shadow rounded-lg p-6">
+                    <blockquote class="text-lg text-gray-800 italic mb-4">"{{ $quote->quote_text }}"</blockquote>
+                    <p class="text-sm text-gray-600">
+                        著者: 
+                        <a href="{{ route('authors.show', $quote->author->id) }}" class="text-blue-500">
+                            {{ $quote->author->name }}
+                        </a>
+                    </p>
+                    <a href="{{ route('quotes.show', $quote->id) }}" class="text-blue-500 underline mt-4 block">
+                        詳細を見る
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    </div>
+@endsection
