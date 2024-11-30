@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\Quote;
+use Jenssegers\Agent\Agent;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,11 +32,12 @@ class AppServiceProvider extends ServiceProvider
     
             // 直近でアクセスされたデータ
             $recentQuotes = Quote::orderBy('last_accessed_at', 'desc')->take(3)->get();
-    
+            $agent = app(Agent::class);
             // ビューにデータを共有
             $view->with([
                 'popularQuotes' => $popularQuotes,
                 'recentQuotes' => $recentQuotes,
+                'agent' => $agent,
             ]);
         });
     }

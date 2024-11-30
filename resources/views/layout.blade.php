@@ -7,19 +7,23 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body class="bg-gray-100 text-gray-800">
-    <header class="bg-blue-600 text-white shadow-md">
-        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-lg font-bold">
-                <a href="{{ route('home') }}" class="hover:underline">名言・格言サイト</a>
-            </h1>
-            <ul class="flex space-x-4">
-                <li><a href="{{ route('largecategories.index') }}" class="hover:underline">大カテゴリ一覧</a></li>
-                <li><a href="{{ route('authors.index') }}" class="hover:underline">著者一覧</a></li>
-                <li><a href="{{ route('quotes.popular') }}" class="hover:underline">人気の名言</a></li>
-                <li><a href="{{ route('search.index') }}" class="hover:underline">検索</a></li>
-            </ul>
-        </nav>
-    </header>
+<header class="bg-blue-600 text-white shadow-md">
+    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <h1 class="font-bold 
+            @if($agent->isMobile()) text-sm @else text-lg @endif"> 
+            <!-- モバイルの場合はテキストを小さくする -->
+            <a href="{{ route('home') }}" class="hover:underline">名言・格言サイト</a>
+        </h1>
+        <ul class="flex space-x-4 
+            @if($agent->isMobile()) text-xs @else text-lg @endif"> 
+            <!-- モバイル時にテキストを小さくする -->
+            <li><a href="{{ route('largecategories.index') }}" class="hover:underline py-2">大カテゴリ一覧</a></li>
+            <li><a href="{{ route('authors.index') }}" class="hover:underline py-2">著者一覧</a></li>
+            <li><a href="{{ route('quotes.popular') }}" class="hover:underline py-2">人気の名言</a></li>
+            <li><a href="{{ route('search.index') }}" class="hover:underline py-2">検索</a></li>
+        </ul>
+    </nav>
+</header>
 
     <main class="container mx-auto px-4 py-6">
         @yield('content')
@@ -42,7 +46,7 @@
 
         <!-- 直近でアクセスされた名言セクション -->
         <section class="mb-2 py-2"> <!-- セクション間の余白を強化 -->
-            <h2 class="text-2xl font-semibold mb-2 mt-2">直近でアクセスされた名言</h2>
+            <h2 class="text-2xl font-semibold mb-4 mt-2">直近でアクセスされた名言</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($recentQuotes as $quote)
                     <div class="bg-white shadow rounded p-6">
