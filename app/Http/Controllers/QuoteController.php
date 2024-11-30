@@ -14,7 +14,7 @@ class QuoteController extends Controller
         $largeCategories = LargeCategory::all();
 
         // ビューにデータを渡す
-        return view('home', compact('popularQuotes', 'largeCategories'));
+        return view('home', compact('largeCategories'));
     }
     
     // 名言詳細ページ
