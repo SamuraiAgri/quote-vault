@@ -11,7 +11,7 @@ class QuoteController extends Controller
     public function index()
     {
         // 人気の名言を取得
-        $popularQuotes = Quote::orderBy('popular_score', 'desc')->limit(10)->get();
+        $popularQuotes = Quote::orderBy('popular_score', 'desc')->limit(9)->get();
 
         // 大カテゴリ一覧を取得
         $largeCategories = LargeCategory::all();

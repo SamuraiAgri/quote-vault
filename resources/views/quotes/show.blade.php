@@ -6,7 +6,7 @@
     <div class="container mx-auto px-4">
         <!-- 名言 -->
         <div class="bg-white shadow rounded-lg p-6 mb-8 text-center">
-            <h1 class="text-3xl font-bold text-blue-800 mb-6">名言詳細</h1>
+            <h1 class="text-3xl font-bold text-blue-800 mb-6">{{ $quote->author->name }}の名言</h1>
             <blockquote class="text-2xl text-gray-800 italic">"{{ $quote->quote_text }}"</blockquote>
         </div>
 
