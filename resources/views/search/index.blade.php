@@ -43,11 +43,6 @@
                     </div>
                 @endforeach
             </div>
-
-            <!-- ページネーション -->
-            <div class="mt-8">
-                {{ $results->links('pagination::tailwind') }}
-            </div>
         @endif
     </div>
 @endsection

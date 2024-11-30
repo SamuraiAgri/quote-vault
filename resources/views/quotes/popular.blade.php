@@ -7,7 +7,7 @@
         <h1 class="text-3xl font-semibold mb-6 text-center">人気の名言ランキング</h1>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            @foreach($popularQuotes as $index => $quote)
+            @foreach($popularRankQuotes as $index => $quote)
                 <div class="bg-white shadow rounded-lg p-6">
                     <!-- ランキング順位 -->
                     <div class="text-blue-600 font-bold text-2xl mb-2">#{{ $index + 1 }}</div>
@@ -32,11 +32,6 @@
                     </a>
                 </div>
             @endforeach
-        </div>
-
-        <!-- ページネーション -->
-        <div class="mt-8">
-            {{ $popularQuotes->links('pagination::tailwind') }}
         </div>
     </div>
 @endsection

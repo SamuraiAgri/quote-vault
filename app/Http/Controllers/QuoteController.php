@@ -10,9 +10,6 @@ class QuoteController extends Controller
     // トップページ
     public function index()
     {
-        // 人気の名言を取得
-        $popularQuotes = Quote::orderBy('popular_score', 'desc')->limit(9)->get();
-
         // 大カテゴリ一覧を取得
         $largeCategories = LargeCategory::all();
 
@@ -33,7 +30,7 @@ class QuoteController extends Controller
     }
     public function popular()
     {
-        $popularQuotes = Quote::orderBy('popular_score', 'desc')->paginate(10);
-        return view('quotes.popular', compact('popularQuotes'));
+        $popularRankQuotes = Quote::orderBy('popular_score', 'desc')->paginate(10);
+        return view('quotes.popular', compact('popularRankQuotes'));
     }
 }
