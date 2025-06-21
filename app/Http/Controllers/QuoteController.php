@@ -1,5 +1,5 @@
 <?php
-// ファイルパス: app/Http/Controllers/QuoteController.php
+// app/Http/Controllers/QuoteController.php
 
 namespace App\Http\Controllers;
 
@@ -25,14 +25,15 @@ class QuoteController extends Controller
 
     public function show($id)
     {
-        $quote = Quote::with(['author', 'category'])->findOrFail($id);
+        $quote = Quote::with(['author', 'category.largeCategory'])->findOrFail($id);
         
         // アクセス数を増やす
         $quote->incrementAccessCount();
         
-        // 関連する名言
+        // 関連する名言（同じカテゴリの他の名言）
         $relatedQuotes = Quote::where('category_id', $quote->category_id)
                              ->where('id', '!=', $quote->id)
+                             ->with(['author'])
                              ->limit(4)
                              ->get();
         
@@ -41,7 +42,7 @@ class QuoteController extends Controller
 
     public function popular()
     {
-        $popularRankQuotes = Quote::popular()->paginate(20);
+        $popularRankQuotes = Quote::popular()->with(['author', 'category'])->paginate(20);
         
         return view('quotes.popular', compact('popularRankQuotes'));
     }

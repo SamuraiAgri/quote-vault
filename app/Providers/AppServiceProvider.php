@@ -1,5 +1,5 @@
 <?php
-// ファイルパス: app/Providers/AppServiceProvider.php
+// app/Providers/AppServiceProvider.php
 
 namespace App\Providers;
 

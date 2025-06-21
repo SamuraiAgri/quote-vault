@@ -1,5 +1,5 @@
 <?php
-// ファイルパス: app/Http/Controllers/HyakuninisshuController.php と app/Http/Controllers/PoetController.php
+// app/Http/Controllers/HyakuninisshuController.php
 
 namespace App\Http\Controllers;
 

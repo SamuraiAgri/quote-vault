@@ -1,5 +1,5 @@
 <?php
-// ファイルパス: app/Http/Controllers/ProverbController.php と app/Http/Controllers/ProverbCategoryController.php
+// app/Http/Controllers/ProverbController.php
 
 namespace App\Http\Controllers;
 
