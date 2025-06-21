@@ -30,4 +30,34 @@ class Quote extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+        // アクセス数を増やすメソッド
+    public function incrementAccessCount()
+    {
+        $this->increment('popular_score');
+        $this->update(['last_accessed_at' => now()]);
+    }
+
+    // 人気順スコープ
+    public function scopePopular($query)
+    {
+        return $query->orderBy('popular_score', 'desc');
+    }
+
+    // 最近アクセスされたもののスコープ
+    public function scopeRecentlyAccessed($query)
+    {
+        return $query->whereNotNull('last_accessed_at')
+                    ->orderBy('last_accessed_at', 'desc');
+    }
+
+    // 検索スコープ
+    public function scopeSearch($query, $keyword)
+    {
+        return $query->where(function($q) use ($keyword) {
+            $q->where('quote_text', 'like', "%{$keyword}%")
+              ->orWhereHas('author', function($authorQuery) use ($keyword) {
+                  $authorQuery->where('name', 'like', "%{$keyword}%");
+              });
+        });
+    }
 }

@@ -1,36 +1,48 @@
 <?php
+// ファイルパス: app/Http/Controllers/QuoteController.php
 
 namespace App\Http\Controllers;
 
 use App\Models\Quote;
 use App\Models\LargeCategory;
 use Illuminate\Http\Request;
+
 class QuoteController extends Controller
 {
-    // トップページ
     public function index()
     {
-        // 大カテゴリ一覧を取得
+        // 大カテゴリ一覧
         $largeCategories = LargeCategory::all();
-
-        // ビューにデータを渡す
-        return view('home', compact('largeCategories'));
+        
+        // 人気の名言
+        $popularQuotes = Quote::popular()->limit(6)->get();
+        
+        // 最近アクセスされた名言
+        $recentQuotes = Quote::recentlyAccessed()->limit(6)->get();
+        
+        return view('home', compact('largeCategories', 'popularQuotes', 'recentQuotes'));
     }
-    
-    // 名言詳細ページ
+
     public function show($id)
     {
         $quote = Quote::with(['author', 'category'])->findOrFail($id);
-
-        // 閲覧回数をインクリメント
-        $quote->increment('popular_score');
-        $quote->update(['last_accessed_at' => now()]);
-
-        return view('quotes.show', compact('quote'));
+        
+        // アクセス数を増やす
+        $quote->incrementAccessCount();
+        
+        // 関連する名言
+        $relatedQuotes = Quote::where('category_id', $quote->category_id)
+                             ->where('id', '!=', $quote->id)
+                             ->limit(4)
+                             ->get();
+        
+        return view('quotes.show', compact('quote', 'relatedQuotes'));
     }
+
     public function popular()
     {
-        $popularRankQuotes = Quote::orderBy('popular_score', 'desc')->paginate(10);
+        $popularRankQuotes = Quote::popular()->paginate(20);
+        
         return view('quotes.popular', compact('popularRankQuotes'));
     }
 }
