@@ -98,9 +98,15 @@
                     <h3 class="text-lg font-bold text-red-800 mb-4 text-center">📖 人気のことわざ</h3>
                     <div class="space-y-3">
                         @php
-                            $popularKotowaza = App\Models\Proverb::where('type', 'ことわざ')->popular()->limit(5)->get();
+                            try {
+                                $popularKotowaza = class_exists('App\Models\Proverb') ? 
+                                    App\Models\Proverb::where('type', 'ことわざ')->popular()->limit(5)->get() : 
+                                    collect();
+                            } catch (\Exception $e) {
+                                $popularKotowaza = collect();
+                            }
                         @endphp
-                        @foreach($popularKotowaza as $index => $proverb)
+                        @forelse($popularKotowaza as $index => $proverb)
                             <div class="bg-white rounded p-3 shadow-sm">
                                 <div class="flex items-center justify-between">
                                     <span class="text-sm font-semibold text-red-800">{{ $index + 1 }}. {{ $proverb->word }}</span>
@@ -109,7 +115,11 @@
                                 </div>
                                 <p class="text-xs text-gray-600 mt-1">{{ Str::limit($proverb->meaning, 50) }}</p>
                             </div>
-                        @endforeach
+                        @empty
+                            <div class="bg-white rounded p-3 shadow-sm text-center">
+                                <p class="text-sm text-gray-500">ことわざを準備中です</p>
+                            </div>
+                        @endforelse
                     </div>
                     <div class="text-center mt-4">
                         <a href="{{ route('proverbs.by-type', 'ことわざ') }}" 
@@ -122,9 +132,15 @@
                     <h3 class="text-lg font-bold text-green-800 mb-4 text-center">🀄 人気の四字熟語</h3>
                     <div class="space-y-3">
                         @php
-                            $popularYojijukugo = App\Models\Proverb::where('type', '四字熟語')->popular()->limit(5)->get();
+                            try {
+                                $popularYojijukugo = class_exists('App\Models\Proverb') ? 
+                                    App\Models\Proverb::where('type', '四字熟語')->popular()->limit(5)->get() : 
+                                    collect();
+                            } catch (\Exception $e) {
+                                $popularYojijukugo = collect();
+                            }
                         @endphp
-                        @foreach($popularYojijukugo as $index => $proverb)
+                        @forelse($popularYojijukugo as $index => $proverb)
                             <div class="bg-white rounded p-3 shadow-sm">
                                 <div class="flex items-center justify-between">
                                     <span class="text-sm font-semibold text-green-800">{{ $index + 1 }}. {{ $proverb->word }}</span>
@@ -133,7 +149,11 @@
                                 </div>
                                 <p class="text-xs text-gray-600 mt-1">{{ Str::limit($proverb->meaning, 50) }}</p>
                             </div>
-                        @endforeach
+                        @empty
+                            <div class="bg-white rounded p-3 shadow-sm text-center">
+                                <p class="text-sm text-gray-500">四字熟語を準備中です</p>
+                            </div>
+                        @endforelse
                     </div>
                     <div class="text-center mt-4">
                         <a href="{{ route('proverbs.by-type', '四字熟語') }}" 
@@ -146,9 +166,15 @@
                     <h3 class="text-lg font-bold text-purple-800 mb-4 text-center">💭 人気の慣用句</h3>
                     <div class="space-y-3">
                         @php
-                            $popularKanyouku = App\Models\Proverb::where('type', '慣用句')->popular()->limit(5)->get();
+                            try {
+                                $popularKanyouku = class_exists('App\Models\Proverb') ? 
+                                    App\Models\Proverb::where('type', '慣用句')->popular()->limit(5)->get() : 
+                                    collect();
+                            } catch (\Exception $e) {
+                                $popularKanyouku = collect();
+                            }
                         @endphp
-                        @foreach($popularKanyouku as $index => $proverb)
+                        @forelse($popularKanyouku as $index => $proverb)
                             <div class="bg-white rounded p-3 shadow-sm">
                                 <div class="flex items-center justify-between">
                                     <span class="text-sm font-semibold text-purple-800">{{ $index + 1 }}. {{ $proverb->word }}</span>
@@ -157,7 +183,11 @@
                                 </div>
                                 <p class="text-xs text-gray-600 mt-1">{{ Str::limit($proverb->meaning, 50) }}</p>
                             </div>
-                        @endforeach
+                        @empty
+                            <div class="bg-white rounded p-3 shadow-sm text-center">
+                                <p class="text-sm text-gray-500">慣用句を準備中です</p>
+                            </div>
+                        @endforelse
                     </div>
                     <div class="text-center mt-4">
                         <a href="{{ route('proverbs.by-type', '慣用句') }}" 

@@ -161,14 +161,7 @@
                         <span class="mr-2">📖</span>人気のことわざ・四字熟語
                     </h3>
                     <div class="space-y-4">
-                        @php
-                            try {
-                                $popularProverbs = class_exists('App\Models\Proverb') ? App\Models\Proverb::popular()->limit(3)->get() : collect();
-                            } catch (Exception $e) {
-                                $popularProverbs = collect();
-                            }
-                        @endphp
-                        @forelse($popularProverbs as $proverb)
+                        @forelse($popularProverbs->take(3) as $proverb)
                             <div class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition">
                                 <h4 class="font-bold text-sm text-gray-800 mb-1">{{ $proverb->word }}</h4>
                                 <p class="text-xs text-gray-600 mb-2">{{ Str::limit($proverb->meaning, 50) }}</p>
@@ -197,14 +190,7 @@
                         <span class="mr-2">🎋</span>人気の百人一首
                     </h3>
                     <div class="space-y-4">
-                        @php
-                            try {
-                                $popularPoems = class_exists('App\Models\Hyakuninisshu') ? App\Models\Hyakuninisshu::popular()->limit(3)->get() : collect();
-                            } catch (Exception $e) {
-                                $popularPoems = collect();
-                            }
-                        @endphp
-                        @forelse($popularPoems as $poem)
+                        @forelse($popularPoems->take(3) as $poem)
                             <div class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition">
                                 <div class="mb-2">
                                     <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">{{ $poem->number }}番</span>

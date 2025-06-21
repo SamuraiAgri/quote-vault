@@ -40,12 +40,56 @@ class AppServiceProvider extends ServiceProvider
             
             // 大カテゴリ一覧（ホーム用）
             $largeCategories = \App\Models\LargeCategory::all();
+
+            // 人気のことわざ・四字熟語（安全に取得）
+            $popularProverbs = collect();
+            try {
+                if (class_exists('App\Models\Proverb')) {
+                    $popularProverbs = \App\Models\Proverb::popular()->limit(6)->get();
+                }
+            } catch (\Exception $e) {
+                // モデルが存在しない場合は空のコレクション
+            }
+
+            // 最近アクセスされたことわざ・四字熟語（安全に取得）
+            $recentProverbs = collect();
+            try {
+                if (class_exists('App\Models\Proverb')) {
+                    $recentProverbs = \App\Models\Proverb::recentlyAccessed()->limit(6)->get();
+                }
+            } catch (\Exception $e) {
+                // モデルが存在しない場合は空のコレクション
+            }
+
+            // 人気の百人一首（安全に取得）
+            $popularPoems = collect();
+            try {
+                if (class_exists('App\Models\Hyakuninisshu')) {
+                    $popularPoems = \App\Models\Hyakuninisshu::popular()->limit(6)->get();
+                }
+            } catch (\Exception $e) {
+                // モデルが存在しない場合は空のコレクション
+            }
+
+            // 最近アクセスされた百人一首（安全に取得）
+            $recentPoems = collect();
+            try {
+                if (class_exists('App\Models\Hyakuninisshu')) {
+                    $recentPoems = \App\Models\Hyakuninisshu::recentlyAccessed()->limit(6)->get();
+                }
+            } catch (\Exception $e) {
+                // モデルが存在しない場合は空のコレクション
+            }
             
             $view->with([
                 'agent' => $agent,
                 'popularQuotes' => $popularQuotes,
                 'recentQuotes' => $recentQuotes,
                 'largeCategories' => $largeCategories,
+                'popularProverbs' => $popularProverbs,
+                'recentProverbs' => $recentProverbs,
+                'popularPoems' => $popularPoems,
+                'recentPoems' => $recentPoems,
             ]);
         });
     }

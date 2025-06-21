@@ -22,7 +22,12 @@
                     <p class="text-sm text-gray-600 mb-4">昔から伝わる教訓や知恵を含んだ短い言葉</p>
                     <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm inline-block">
                         @php
-                            $kotowazaCount = App\Models\Proverb::where('type', 'ことわざ')->count();
+                            try {
+                                $kotowazaCount = class_exists('App\Models\Proverb') ? 
+                                    App\Models\Proverb::where('type', 'ことわざ')->count() : 0;
+                            } catch (\Exception $e) {
+                                $kotowazaCount = 0;
+                            }
                         @endphp
                         {{ $kotowazaCount }}件
                     </div>
@@ -34,7 +39,12 @@
                     <p class="text-sm text-gray-600 mb-4">漢字四文字で表現される熟語や慣用句</p>
                     <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm inline-block">
                         @php
-                            $yojijukugoCount = App\Models\Proverb::where('type', '四字熟語')->count();
+                            try {
+                                $yojijukugoCount = class_exists('App\Models\Proverb') ? 
+                                    App\Models\Proverb::where('type', '四字熟語')->count() : 0;
+                            } catch (\Exception $e) {
+                                $yojijukugoCount = 0;
+                            }
                         @endphp
                         {{ $yojijukugoCount }}件
                     </div>
@@ -46,7 +56,12 @@
                     <p class="text-sm text-gray-600 mb-4">習慣的に使われる決まった表現</p>
                     <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm inline-block">
                         @php
-                            $kanyoukuCount = App\Models\Proverb::where('type', '慣用句')->count();
+                            try {
+                                $kanyoukuCount = class_exists('App\Models\Proverb') ? 
+                                    App\Models\Proverb::where('type', '慣用句')->count() : 0;
+                            } catch (\Exception $e) {
+                                $kanyoukuCount = 0;
+                            }
                         @endphp
                         {{ $kanyoukuCount }}件
                     </div>

@@ -1,4 +1,4 @@
-{{-- ファイルパス: resources/views/hyakuninisshu/search.blade.php --}}
+{{-- resources/views/hyakuninisshu/search.blade.php --}}
 @extends('layout')
 
 @section('title', '百人一首検索')
@@ -48,11 +48,13 @@
                         <label class="block text-sm font-semibold text-purple-700 mb-2">歌人</label>
                         <select name="poet_id" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-500">
                             <option value="">すべての歌人</option>
-                            @foreach($poets as $poet)
-                                <option value="{{ $poet->id }}" {{ $poet_id == $poet->id ? 'selected' : '' }}>
-                                    {{ $poet->name }}
-                                </option>
-                            @endforeach
+                            @if(isset($poets))
+                                @foreach($poets as $poet)
+                                    <option value="{{ $poet->id }}" {{ $poet_id == $poet->id ? 'selected' : '' }}>
+                                        {{ $poet->name }}
+                                    </option>
+                                @endforeach
+                            @endif
                         </select>
                     </div>
                 </div>
@@ -154,9 +156,15 @@
             <h2 class="text-2xl font-semibold mb-4">人気の歌</h2>
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 @php
-                    $popularPoems = App\Models\Hyakuninisshu::popular()->limit(10)->get();
+                    try {
+                        $popularPoems = class_exists('App\Models\Hyakuninisshu') ? 
+                            App\Models\Hyakuninisshu::popular()->limit(10)->get() : 
+                            collect();
+                    } catch (\Exception $e) {
+                        $popularPoems = collect();
+                    }
                 @endphp
-                @foreach($popularPoems as $poem)
+                @forelse($popularPoems as $poem)
                     <a href="{{ route('hyakuninisshu.show', $poem->id) }}" 
                        class="bg-white hover:bg-purple-50 shadow rounded-lg p-3 text-center transition border hover:border-purple-300">
                         <div class="font-bold text-purple-600 mb-1">{{ $poem->number }}番</div>
@@ -165,7 +173,11 @@
                             <div class="text-xs text-green-600 mt-1">{{ $poem->season }}</div>
                         @endif
                     </a>
-                @endforeach
+                @empty
+                    <div class="col-span-5 text-center py-8">
+                        <p class="text-gray-500">人気の歌を準備中です</p>
+                    </div>
+                @endforelse
             </div>
         </section>
     </div>

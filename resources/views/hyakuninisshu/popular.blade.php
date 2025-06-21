@@ -114,9 +114,15 @@
                     <h3 class="text-lg font-bold text-pink-800 mb-4 text-center">🌸 春の人気歌</h3>
                     <div class="space-y-3">
                         @php
-                            $popularSpring = App\Models\Hyakuninisshu::where('season', '春')->popular()->limit(3)->get();
+                            try {
+                                $popularSpring = class_exists('App\Models\Hyakuninisshu') ? 
+                                    App\Models\Hyakuninisshu::where('season', '春')->popular()->limit(3)->get() : 
+                                    collect();
+                            } catch (\Exception $e) {
+                                $popularSpring = collect();
+                            }
                         @endphp
-                        @foreach($popularSpring as $index => $poem)
+                        @forelse($popularSpring as $index => $poem)
                             <div class="bg-white rounded p-3 shadow-sm">
                                 <div class="flex items-center justify-between mb-1">
                                     <span class="text-xs bg-pink-200 text-pink-800 px-2 py-1 rounded">{{ $poem->number }}番</span>
@@ -126,7 +132,11 @@
                                 <p class="text-sm font-medium text-gray-800">{{ Str::limit($poem->upper_phrase, 30) }}</p>
                                 <p class="text-xs text-gray-600">- {{ $poem->poet->name }}</p>
                             </div>
-                        @endforeach
+                        @empty
+                            <div class="bg-white rounded p-3 shadow-sm text-center">
+                                <p class="text-sm text-gray-500">春の歌を準備中です</p>
+                            </div>
+                        @endforelse
                     </div>
                     <div class="text-center mt-4">
                         <a href="{{ route('hyakuninisshu.by-season', '春') }}" 
@@ -139,9 +149,15 @@
                     <h3 class="text-lg font-bold text-green-800 mb-4 text-center">🌻 夏の人気歌</h3>
                     <div class="space-y-3">
                         @php
-                            $popularSummer = App\Models\Hyakuninisshu::where('season', '夏')->popular()->limit(3)->get();
+                            try {
+                                $popularSummer = class_exists('App\Models\Hyakuninisshu') ? 
+                                    App\Models\Hyakuninisshu::where('season', '夏')->popular()->limit(3)->get() : 
+                                    collect();
+                            } catch (\Exception $e) {
+                                $popularSummer = collect();
+                            }
                         @endphp
-                        @foreach($popularSummer as $index => $poem)
+                        @forelse($popularSummer as $index => $poem)
                             <div class="bg-white rounded p-3 shadow-sm">
                                 <div class="flex items-center justify-between mb-1">
                                     <span class="text-xs bg-green-200 text-green-800 px-2 py-1 rounded">{{ $poem->number }}番</span>
@@ -151,7 +167,11 @@
                                 <p class="text-sm font-medium text-gray-800">{{ Str::limit($poem->upper_phrase, 30) }}</p>
                                 <p class="text-xs text-gray-600">- {{ $poem->poet->name }}</p>
                             </div>
-                        @endforeach
+                        @empty
+                            <div class="bg-white rounded p-3 shadow-sm text-center">
+                                <p class="text-sm text-gray-500">夏の歌を準備中です</p>
+                            </div>
+                        @endforelse
                     </div>
                     <div class="text-center mt-4">
                         <a href="{{ route('hyakuninisshu.by-season', '夏') }}" 
@@ -164,9 +184,15 @@
                     <h3 class="text-lg font-bold text-orange-800 mb-4 text-center">🍁 秋の人気歌</h3>
                     <div class="space-y-3">
                         @php
-                            $popularAutumn = App\Models\Hyakuninisshu::where('season', '秋')->popular()->limit(3)->get();
+                            try {
+                                $popularAutumn = class_exists('App\Models\Hyakuninisshu') ? 
+                                    App\Models\Hyakuninisshu::where('season', '秋')->popular()->limit(3)->get() : 
+                                    collect();
+                            } catch (\Exception $e) {
+                                $popularAutumn = collect();
+                            }
                         @endphp
-                        @foreach($popularAutumn as $index => $poem)
+                        @forelse($popularAutumn as $index => $poem)
                             <div class="bg-white rounded p-3 shadow-sm">
                                 <div class="flex items-center justify-between mb-1">
                                     <span class="text-xs bg-orange-200 text-orange-800 px-2 py-1 rounded">{{ $poem->number }}番</span>
@@ -176,7 +202,11 @@
                                 <p class="text-sm font-medium text-gray-800">{{ Str::limit($poem->upper_phrase, 30) }}</p>
                                 <p class="text-xs text-gray-600">- {{ $poem->poet->name }}</p>
                             </div>
-                        @endforeach
+                        @empty
+                            <div class="bg-white rounded p-3 shadow-sm text-center">
+                                <p class="text-sm text-gray-500">秋の歌を準備中です</p>
+                            </div>
+                        @endforelse
                     </div>
                     <div class="text-center mt-4">
                         <a href="{{ route('hyakuninisshu.by-season', '秋') }}" 
@@ -189,9 +219,15 @@
                     <h3 class="text-lg font-bold text-purple-800 mb-4 text-center">💕 恋の人気歌</h3>
                     <div class="space-y-3">
                         @php
-                            $popularLove = App\Models\Hyakuninisshu::where('theme', '恋')->popular()->limit(3)->get();
+                            try {
+                                $popularLove = class_exists('App\Models\Hyakuninisshu') ? 
+                                    App\Models\Hyakuninisshu::where('theme', '恋')->popular()->limit(3)->get() : 
+                                    collect();
+                            } catch (\Exception $e) {
+                                $popularLove = collect();
+                            }
                         @endphp
-                        @foreach($popularLove as $index => $poem)
+                        @forelse($popularLove as $index => $poem)
                             <div class="bg-white rounded p-3 shadow-sm">
                                 <div class="flex items-center justify-between mb-1">
                                     <span class="text-xs bg-purple-200 text-purple-800 px-2 py-1 rounded">{{ $poem->number }}番</span>
@@ -201,7 +237,11 @@
                                 <p class="text-sm font-medium text-gray-800">{{ Str::limit($poem->upper_phrase, 30) }}</p>
                                 <p class="text-xs text-gray-600">- {{ $poem->poet->name }}</p>
                             </div>
-                        @endforeach
+                        @empty
+                            <div class="bg-white rounded p-3 shadow-sm text-center">
+                                <p class="text-sm text-gray-500">恋の歌を準備中です</p>
+                            </div>
+                        @endforelse
                     </div>
                     <div class="text-center mt-4">
                         <a href="{{ route('hyakuninisshu.by-theme', '恋') }}" 

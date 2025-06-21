@@ -58,41 +58,6 @@
 
     <main class="container mx-auto px-4 py-6">
         @yield('content')
-
-        <!-- 現在のページに応じてコンテンツを表示 -->
-        @if(Request::is('/'))
-            <!-- ホームページの場合は人気の名言セクション -->
-            <section class="mb-8 py-8">
-                <h2 class="text-2xl font-semibold mb-4 mt-8 text-blue-800">人気の名言</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    @foreach($popularQuotes as $quote)
-                        <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-all">
-                            <blockquote class="text-lg text-gray-800 italic mb-4">"{{ $quote->quote_text }}"</blockquote>
-                            <p class="text-sm text-gray-600 mb-4">- {{ $quote->author->name }}</p>
-                            <a href="{{ route('quotes.show', $quote->id) }}" class="inline-block text-blue-600 border-2 border-blue-600 hover:bg-blue-600 hover:text-white rounded px-6 py-2 transition-all duration-300">
-                                詳細を見る
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
-            </section>
-
-            <!-- 直近でアクセスされた名言セクション -->
-            <section class="mb-2 py-2">
-                <h2 class="text-2xl font-semibold mb-4 mt-2 text-blue-800">直近でアクセスされた名言</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    @foreach($recentQuotes as $quote)
-                        <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-all">
-                            <blockquote class="text-lg text-gray-800 italic mb-4">"{{ $quote->quote_text }}"</blockquote>
-                            <p class="text-sm text-gray-600 mb-4">- {{ $quote->author->name }}</p>
-                            <a href="{{ route('quotes.show', $quote->id) }}" class="inline-block text-blue-600 border-2 border-blue-600 hover:bg-blue-600 hover:text-white rounded px-6 py-2 transition-all duration-300">
-                                詳細を見る
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
-            </section>
-        @endif
     </main>
 
     <footer class="bg-gray-800 text-white py-8">

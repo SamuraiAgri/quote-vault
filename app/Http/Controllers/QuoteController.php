@@ -19,8 +19,34 @@ class QuoteController extends Controller
         
         // 最近アクセスされた名言
         $recentQuotes = Quote::recentlyAccessed()->limit(6)->get();
+
+        // 人気のことわざ・四字熟語（安全に取得）
+        $popularProverbs = collect();
+        try {
+            if (class_exists('App\Models\Proverb')) {
+                $popularProverbs = \App\Models\Proverb::popular()->limit(6)->get();
+            }
+        } catch (\Exception $e) {
+            // モデルが存在しない場合は空のコレクション
+        }
+
+        // 人気の百人一首（安全に取得）
+        $popularPoems = collect();
+        try {
+            if (class_exists('App\Models\Hyakuninisshu')) {
+                $popularPoems = \App\Models\Hyakuninisshu::popular()->limit(6)->get();
+            }
+        } catch (\Exception $e) {
+            // モデルが存在しない場合は空のコレクション
+        }
         
-        return view('home', compact('largeCategories', 'popularQuotes', 'recentQuotes'));
+        return view('home', compact(
+            'largeCategories', 
+            'popularQuotes', 
+            'recentQuotes',
+            'popularProverbs',
+            'popularPoems'
+        ));
     }
 
     public function show($id)
