@@ -16,7 +16,7 @@
             <h2 class="text-2xl font-semibold mb-6 text-center text-blue-800">種類別で探す</h2>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 <a href="{{ route('proverbs.by-type', 'ことわざ') }}" 
-                   class="bg-white shadow-lg hover:shadow-xl transition rounded-lg p-8 text-center transform hover:-translate-y-1">
+                   class="bg-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-8 text-center transform hover:-translate-y-2 border-l-4 border-blue-500">
                     <div class="text-4xl mb-4">📖</div>
                     <h3 class="text-xl font-bold text-blue-800 mb-3">ことわざ</h3>
                     <p class="text-sm text-gray-600 mb-4">昔から伝わる教訓や知恵を含んだ短い言葉</p>
@@ -33,7 +33,7 @@
                     </div>
                 </a>
                 <a href="{{ route('proverbs.by-type', '四字熟語') }}" 
-                   class="bg-white shadow-lg hover:shadow-xl transition rounded-lg p-8 text-center transform hover:-translate-y-1">
+                   class="bg-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-8 text-center transform hover:-translate-y-2 border-l-4 border-blue-500">
                     <div class="text-4xl mb-4">🀄</div>
                     <h3 class="text-xl font-bold text-blue-800 mb-3">四字熟語</h3>
                     <p class="text-sm text-gray-600 mb-4">漢字四文字で表現される熟語や慣用句</p>
@@ -50,7 +50,7 @@
                     </div>
                 </a>
                 <a href="{{ route('proverbs.by-type', '慣用句') }}" 
-                   class="bg-white shadow-lg hover:shadow-xl transition rounded-lg p-8 text-center transform hover:-translate-y-1">
+                   class="bg-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-8 text-center transform hover:-translate-y-2 border-l-4 border-blue-500">
                     <div class="text-4xl mb-4">💭</div>
                     <h3 class="text-xl font-bold text-blue-800 mb-3">慣用句</h3>
                     <p class="text-sm text-gray-600 mb-4">習慣的に使われる決まった表現</p>
@@ -75,7 +75,7 @@
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 @foreach($categories as $category)
                     <a href="{{ route('proverb-categories.show', $category->id) }}" 
-                       class="bg-blue-100 hover:bg-blue-200 transition-all rounded-lg p-4 text-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                       class="bg-blue-100 hover:bg-blue-200 transition-all duration-300 rounded-lg p-4 text-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                         <span class="text-sm font-bold text-blue-800 block mb-1">{{ $category->name }}</span>
                         <div class="text-xs text-blue-600">{{ $category->proverbs_count }}件</div>
                     </a>
@@ -98,12 +98,10 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($popularProverbs as $index => $proverb)
-                    <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition">
+                    <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition border-l-4 border-blue-500">
                         <div class="flex items-center justify-between mb-3">
                             <span class="text-lg font-bold text-blue-600">{{ $index + 1 }}位</span>
-                            <span class="bg-{{ $proverb->type === 'ことわざ' ? 'red' : ($proverb->type === '四字熟語' ? 'green' : 'purple') }}-100 
-                                        text-{{ $proverb->type === 'ことわざ' ? 'red' : ($proverb->type === '四字熟語' ? 'green' : 'purple') }}-800 
-                                        px-2 py-1 rounded text-xs font-semibold">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-semibold">
                                 {{ $proverb->type }}
                             </span>
                         </div>
@@ -126,7 +124,7 @@
                 <h2 class="text-2xl font-semibold mb-6 text-blue-800">最近見たことわざ・四字熟語</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach($recentProverbs as $proverb)
-                        <div class="bg-gray-50 shadow-lg rounded-lg p-6 hover:shadow-xl transition">
+                        <div class="bg-gray-50 shadow-lg rounded-lg p-6 hover:shadow-xl transition border-l-4 border-gray-400">
                             <div class="flex items-center justify-between mb-3">
                                 <span class="text-xs bg-gray-300 text-gray-700 px-2 py-1 rounded">{{ $proverb->type }}</span>
                                 <span class="text-xs text-gray-500">
@@ -145,7 +143,7 @@
         @endif
 
         <!-- 検索ボックス -->
-        <section class="mb-8 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-8">
+        <section class="mb-8 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-8 shadow-lg">
             <h2 class="text-xl font-semibold mb-6 text-center text-blue-800">ことわざ・四字熟語を検索</h2>
             <form action="{{ route('proverbs.search') }}" method="GET" class="max-w-2xl mx-auto">
                 <div class="flex flex-col sm:flex-row gap-4">
@@ -169,7 +167,7 @@
         <section class="mb-8 bg-white rounded-lg shadow-lg p-8">
             <h2 class="text-2xl font-semibold mb-6 text-center text-blue-800">学習のポイント</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-blue-50 rounded-lg p-6">
+                <div class="bg-blue-50 rounded-lg p-6 border border-blue-200">
                     <h3 class="font-bold text-blue-700 mb-3 flex items-center">
                         <span class="mr-2">📚</span>効果的な学習法
                     </h3>
@@ -180,7 +178,7 @@
                         <li>• 日常会話で実際に使ってみる</li>
                     </ul>
                 </div>
-                <div class="bg-green-50 rounded-lg p-6">
+                <div class="bg-green-50 rounded-lg p-6 border border-green-200">
                     <h3 class="font-bold text-green-700 mb-3 flex items-center">
                         <span class="mr-2">🎯</span>活用のコツ
                     </h3>

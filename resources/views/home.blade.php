@@ -7,77 +7,77 @@
     <div class="relative">
         <!-- メインタイトル -->
         <div class="text-center mb-8">
-            <h1 class="text-4xl font-bold mb-4 text-gray-800">名言・格言・ことわざ・百人一首の総合サイト</h1>
+            <h1 class="text-4xl font-bold mb-4 text-blue-800">名言・格言・ことわざ・百人一首の総合サイト</h1>
             <p class="text-lg text-gray-600 mb-6">偉人の名言から四字熟語、百人一首まで幅広く学べるサイトです</p>
         </div>
 
         <!-- メイン画像 -->
         <div class="relative mb-12">
-            <img src="{{ asset('img/ijin.png') }}" alt="偉人のシルエット" class="w-full h-auto object-cover mx-auto" style="max-height: 600px; object-position: top;">
+            <img src="{{ asset('img/ijin.png') }}" alt="偉人のシルエット" class="w-full h-auto object-cover mx-auto rounded-lg shadow-lg" style="max-height: 600px; object-position: top;">
         </div>
 
         <!-- 3つのメインコンテンツセクション -->
         <section class="mb-12">
-            <h2 class="text-3xl font-semibold text-center mb-8 text-gray-800">サイト内容</h2>
+            <h2 class="text-3xl font-semibold text-center mb-8 text-blue-800">サイト内容</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- 名言・格言 -->
-                <div class="bg-white shadow-lg rounded-lg p-8 text-center hover:shadow-xl transition transform hover:-translate-y-1">
+                <div class="bg-white shadow-lg rounded-lg p-8 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-blue-500">
                     <div class="text-5xl mb-4">💬</div>
                     <h3 class="text-2xl font-bold mb-4 text-blue-800">名言・格言</h3>
                     <p class="text-gray-600 mb-6">偉人たちの心に響く言葉を著者別・カテゴリ別で探せます</p>
                     <div class="space-y-3">
                         <a href="{{ route('largecategories.index') }}" 
-                           class="block bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-2 rounded transition">
+                           class="block bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg transition font-semibold">
                             大カテゴリ一覧
                         </a>
                         <a href="{{ route('authors.index') }}" 
-                           class="block bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-2 rounded transition">
+                           class="block bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-3 rounded-lg transition">
                             著者一覧
                         </a>
                         <a href="{{ route('quotes.popular') }}" 
-                           class="block bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-2 rounded transition">
+                           class="block bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-3 rounded-lg transition">
                             人気の名言
                         </a>
                     </div>
                 </div>
 
                 <!-- ことわざ・四字熟語 -->
-                <div class="bg-white shadow-lg rounded-lg p-8 text-center hover:shadow-xl transition transform hover:-translate-y-1">
+                <div class="bg-white shadow-lg rounded-lg p-8 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-blue-500">
                     <div class="text-5xl mb-4">📖</div>
                     <h3 class="text-2xl font-bold mb-4 text-blue-800">ことわざ・四字熟語</h3>
                     <p class="text-gray-600 mb-6">日本の伝統的な言葉の知恵を意味と用例で学べます</p>
                     <div class="space-y-3">
                         <a href="{{ route('proverbs.by-type', 'ことわざ') }}" 
-                           class="block bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-2 rounded transition">
+                           class="block bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg transition font-semibold">
                             ことわざ一覧
                         </a>
                         <a href="{{ route('proverbs.by-type', '四字熟語') }}" 
-                           class="block bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-2 rounded transition">
+                           class="block bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-3 rounded-lg transition">
                             四字熟語一覧
                         </a>
                         <a href="{{ route('proverbs.by-type', '慣用句') }}" 
-                           class="block bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-2 rounded transition">
+                           class="block bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-3 rounded-lg transition">
                             慣用句一覧
                         </a>
                     </div>
                 </div>
 
                 <!-- 百人一首 -->
-                <div class="bg-white shadow-lg rounded-lg p-8 text-center hover:shadow-xl transition transform hover:-translate-y-1">
+                <div class="bg-white shadow-lg rounded-lg p-8 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-blue-500">
                     <div class="text-5xl mb-4">🎋</div>
                     <h3 class="text-2xl font-bold mb-4 text-blue-800">百人一首・和歌</h3>
                     <p class="text-gray-600 mb-6">古典和歌の傑作100首を現代語訳とともに学べます</p>
                     <div class="space-y-3">
                         <a href="{{ route('hyakuninisshu.index') }}" 
-                           class="block bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-2 rounded transition">
+                           class="block bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg transition font-semibold">
                             百人一首一覧
                         </a>
                         <a href="{{ route('poets.index') }}" 
-                           class="block bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-2 rounded transition">
+                           class="block bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-3 rounded-lg transition">
                             歌人一覧
                         </a>
                         <a href="{{ route('hyakuninisshu.by-season', '春') }}" 
-                           class="block bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-2 rounded transition">
+                           class="block bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-3 rounded-lg transition">
                             季節別に探す
                         </a>
                     </div>
@@ -86,43 +86,43 @@
         </section>
 
         <!-- 検索セクション -->
-        <section class="mb-12 bg-gradient-to-r from-blue-100 via-blue-50 to-blue-100 rounded-lg p-8">
-            <h2 class="text-2xl font-semibold text-center mb-6 text-gray-800">各コンテンツを検索</h2>
+        <section class="mb-12 bg-gradient-to-r from-blue-100 via-blue-50 to-blue-100 rounded-lg p-8 shadow-lg">
+            <h2 class="text-2xl font-semibold text-center mb-6 text-blue-800">各コンテンツを検索</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- 名言検索 -->
-                <div class="bg-white rounded-lg p-6 shadow">
-                    <h3 class="font-bold text-blue-800 mb-3">名言・格言を検索</h3>
+                <div class="bg-white rounded-lg p-6 shadow-lg border border-blue-200">
+                    <h3 class="font-bold text-blue-800 mb-3 text-center">名言・格言を検索</h3>
                     <form action="{{ route('search.index') }}" method="GET">
                         <input type="text" name="q" placeholder="著者名や名言を検索..."
-                               class="w-full border border-gray-300 rounded p-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                               class="w-full border border-gray-300 rounded-lg p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <button type="submit" 
-                                class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
+                                class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-semibold">
                             名言を検索
                         </button>
                     </form>
                 </div>
 
                 <!-- ことわざ検索 -->
-                <div class="bg-white rounded-lg p-6 shadow">
-                    <h3 class="font-bold text-blue-800 mb-3">ことわざ・四字熟語を検索</h3>
+                <div class="bg-white rounded-lg p-6 shadow-lg border border-blue-200">
+                    <h3 class="font-bold text-blue-800 mb-3 text-center">ことわざ・四字熟語を検索</h3>
                     <form action="{{ route('proverbs.search') }}" method="GET">
                         <input type="text" name="q" placeholder="ことわざ、意味を検索..."
-                               class="w-full border border-gray-300 rounded p-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                               class="w-full border border-gray-300 rounded-lg p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <button type="submit" 
-                                class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
+                                class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-semibold">
                             ことわざを検索
                         </button>
                     </form>
                 </div>
 
                 <!-- 百人一首検索 -->
-                <div class="bg-white rounded-lg p-6 shadow">
-                    <h3 class="font-bold text-blue-800 mb-3">百人一首を検索</h3>
+                <div class="bg-white rounded-lg p-6 shadow-lg border border-blue-200">
+                    <h3 class="font-bold text-blue-800 mb-3 text-center">百人一首を検索</h3>
                     <form action="{{ route('hyakuninisshu.search') }}" method="GET">
                         <input type="text" name="q" placeholder="歌の内容、歌人を検索..."
-                               class="w-full border border-gray-300 rounded p-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                               class="w-full border border-gray-300 rounded-lg p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <button type="submit" 
-                                class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
+                                class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-semibold">
                             和歌を検索
                         </button>
                     </form>
@@ -132,7 +132,7 @@
 
         <!-- 人気コンテンツセクション -->
         <section class="mb-12">
-            <h2 class="text-2xl font-semibold text-center mb-8 text-gray-800">人気のコンテンツ</h2>
+            <h2 class="text-2xl font-semibold text-center mb-8 text-blue-800">人気のコンテンツ</h2>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- 人気の名言 -->
                 <div>
@@ -141,11 +141,11 @@
                     </h3>
                     <div class="space-y-4">
                         @foreach($popularQuotes->take(3) as $quote)
-                            <div class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition">
+                            <div class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition border-l-4 border-blue-500">
                                 <blockquote class="text-sm text-gray-800 italic mb-2">"{{ Str::limit($quote->quote_text, 60) }}"</blockquote>
                                 <p class="text-xs text-gray-600">- {{ $quote->author->name }}</p>
                                 <a href="{{ route('quotes.show', $quote->id) }}" 
-                                   class="text-blue-600 hover:text-blue-800 text-xs">詳細 →</a>
+                                   class="text-blue-600 hover:text-blue-800 text-xs font-semibold">詳細 →</a>
                             </div>
                         @endforeach
                     </div>
@@ -162,17 +162,17 @@
                     </h3>
                     <div class="space-y-4">
                         @forelse($popularProverbs->take(3) as $proverb)
-                            <div class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition">
+                            <div class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition border-l-4 border-blue-500">
                                 <h4 class="font-bold text-sm text-gray-800 mb-1">{{ $proverb->word }}</h4>
                                 <p class="text-xs text-gray-600 mb-2">{{ Str::limit($proverb->meaning, 50) }}</p>
                                 <div class="flex justify-between items-center">
                                     <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">{{ $proverb->type }}</span>
                                     <a href="{{ route('proverbs.show', $proverb->id) }}" 
-                                       class="text-blue-600 hover:text-blue-800 text-xs">詳細 →</a>
+                                       class="text-blue-600 hover:text-blue-800 text-xs font-semibold">詳細 →</a>
                                 </div>
                             </div>
                         @empty
-                            <div class="bg-white shadow-lg rounded-lg p-4 text-center">
+                            <div class="bg-white shadow-lg rounded-lg p-4 text-center border-l-4 border-blue-500">
                                 <p class="text-gray-500 text-sm">ことわざ・四字熟語を準備中です</p>
                                 <a href="{{ route('proverbs.index') }}" class="text-blue-600 hover:text-blue-800 text-xs">詳細ページへ →</a>
                             </div>
@@ -191,17 +191,17 @@
                     </h3>
                     <div class="space-y-4">
                         @forelse($popularPoems->take(3) as $poem)
-                            <div class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition">
+                            <div class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition border-l-4 border-blue-500">
                                 <div class="mb-2">
                                     <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">{{ $poem->number }}番</span>
                                 </div>
                                 <p class="text-sm text-gray-800 mb-2 font-medium">{{ Str::limit($poem->upper_phrase . ' ' . $poem->lower_phrase, 40) }}</p>
                                 <p class="text-xs text-gray-600 mb-2">- {{ $poem->poet->name }}</p>
                                 <a href="{{ route('hyakuninisshu.show', $poem->id) }}" 
-                                   class="text-blue-600 hover:text-blue-800 text-xs">詳細 →</a>
+                                   class="text-blue-600 hover:text-blue-800 text-xs font-semibold">詳細 →</a>
                             </div>
                         @empty
-                            <div class="bg-white shadow-lg rounded-lg p-4 text-center">
+                            <div class="bg-white shadow-lg rounded-lg p-4 text-center border-l-4 border-blue-500">
                                 <p class="text-gray-500 text-sm">百人一首を準備中です</p>
                                 <a href="{{ route('hyakuninisshu.index') }}" class="text-blue-600 hover:text-blue-800 text-xs">詳細ページへ →</a>
                             </div>
@@ -220,7 +220,7 @@
             <h2 class="text-2xl font-semibold py-8 text-blue-800">名言・格言の大カテゴリ一覧</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 @foreach($largeCategories as $largeCategory)
-                    <div class="bg-blue-100 rounded-lg shadow-lg p-4 text-center hover:bg-blue-200 transition-all">
+                    <div class="bg-blue-100 rounded-lg shadow-lg p-4 text-center hover:bg-blue-200 transition-all hover:shadow-xl transform hover:-translate-y-1">
                         <a href="{{ route('largecategories.show', $largeCategory->id) }}" class="text-blue-700 font-semibold">
                             {{ $largeCategory->name }}
                         </a>

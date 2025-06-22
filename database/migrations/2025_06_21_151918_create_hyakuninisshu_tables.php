@@ -14,7 +14,7 @@ class CreateHyakuninisshuTables extends Migration
     public function up()
     {
         // 歌人テーブル
-        Schema::create('poets', function (Blueprint $table) {
+        Schema::create('m_poets', function (Blueprint $table) {
             $table->id();
             $table->string('name')->comment('歌人名');
             $table->string('reading')->nullable()->comment('読み');
@@ -24,7 +24,7 @@ class CreateHyakuninisshuTables extends Migration
         });
 
         // 百人一首テーブル
-        Schema::create('hyakuninisshu', function (Blueprint $table) {
+        Schema::create('t_hyakuninisshu', function (Blueprint $table) {
             $table->id();
             $table->integer('number')->unique()->comment('番号（1-100）');
             $table->text('upper_phrase')->comment('上の句');
@@ -34,13 +34,13 @@ class CreateHyakuninisshuTables extends Migration
             $table->text('interpretation')->nullable()->comment('解釈・解説');
             $table->string('season')->nullable()->comment('季節');
             $table->string('theme')->nullable()->comment('テーマ（恋・自然・人生など）');
-            $table->foreignId('poet_id')->constrained('poets')->onDelete('cascade');
+            $table->foreignId('poet_id')->constrained('m_poets')->onDelete('cascade');
             $table->integer('access_count')->default(0)->comment('アクセス数');
             $table->timestamp('last_accessed_at')->nullable()->comment('最終アクセス日時');
             $table->timestamps();
             
-            // 検索用インデックス
-            $table->fullText(['upper_phrase', 'lower_phrase', 'reading', 'modern_translation']);
+            // 検索用インデックス（インデックス名を短縮）
+            $table->fullText(['upper_phrase', 'lower_phrase', 'reading', 'modern_translation'], 'hyakunin_search_idx');
         });
     }
 
@@ -51,7 +51,7 @@ class CreateHyakuninisshuTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hyakuninisshu');
-        Schema::dropIfExists('poets');
+        Schema::dropIfExists('t_hyakuninisshu');
+        Schema::dropIfExists('m_poets');
     }
 }

@@ -11,8 +11,8 @@
 <header class="bg-blue-600 text-white shadow-md">
     <nav class="container mx-auto px-4 py-4">
         <!-- サイトタイトル -->
-        <div class="flex justify-between items-center mb-2">
-            <h1 class="font-bold @if($agent->isMobile()) text-sm @else text-lg @endif"> 
+        <div class="flex justify-between items-center mb-3">
+            <h1 class="font-bold @if($agent->isMobile()) text-lg @else text-xl @endif"> 
                 <a href="{{ route('home') }}" class="hover:underline">名言・格言・ことわざ・百人一首</a>
             </h1>
         </div>
@@ -22,41 +22,41 @@
             <!-- 名言・格言セクション -->
             <div class="mb-2">
                 <span class="font-semibold text-yellow-300">【名言・格言】</span>
-                <ul class="inline-flex @if($agent->isMobile()) space-x-2 @else space-x-3 @endif ml-2">
-                    <li><a href="{{ route('largecategories.index') }}" class="hover:underline text-blue-100 hover:text-yellow-300">カテゴリ</a></li>
-                    <li><a href="{{ route('authors.index') }}" class="hover:underline text-blue-100 hover:text-yellow-300">著者</a></li>
-                    <li><a href="{{ route('quotes.popular') }}" class="hover:underline text-blue-100 hover:text-yellow-300">人気</a></li>
-                    <li><a href="{{ route('search.index') }}" class="hover:underline text-blue-100 hover:text-yellow-300">検索</a></li>
+                <ul class="inline-flex @if($agent->isMobile()) space-x-2 @else space-x-4 @endif ml-2">
+                    <li><a href="{{ route('largecategories.index') }}" class="hover:underline text-blue-100 hover:text-yellow-300 transition">カテゴリ</a></li>
+                    <li><a href="{{ route('authors.index') }}" class="hover:underline text-blue-100 hover:text-yellow-300 transition">著者</a></li>
+                    <li><a href="{{ route('quotes.popular') }}" class="hover:underline text-blue-100 hover:text-yellow-300 transition">人気</a></li>
+                    <li><a href="{{ route('search.index') }}" class="hover:underline text-blue-100 hover:text-yellow-300 transition">検索</a></li>
                 </ul>
             </div>
 
             <!-- ことわざ・四字熟語セクション -->
             <div class="mb-2">
                 <span class="font-semibold text-yellow-300">【ことわざ・四字熟語】</span>
-                <ul class="inline-flex @if($agent->isMobile()) space-x-2 @else space-x-3 @endif ml-2">
-                    <li><a href="{{ route('proverbs.index') }}" class="hover:underline text-blue-100 hover:text-yellow-300">トップ</a></li>
-                    <li><a href="{{ route('proverbs.by-type', 'ことわざ') }}" class="hover:underline text-blue-100 hover:text-yellow-300">ことわざ</a></li>
-                    <li><a href="{{ route('proverbs.by-type', '四字熟語') }}" class="hover:underline text-blue-100 hover:text-yellow-300">四字熟語</a></li>
-                    <li><a href="{{ route('proverbs.by-type', '慣用句') }}" class="hover:underline text-blue-100 hover:text-yellow-300">慣用句</a></li>
-                    <li><a href="{{ route('proverbs.search') }}" class="hover:underline text-blue-100 hover:text-yellow-300">検索</a></li>
+                <ul class="inline-flex @if($agent->isMobile()) space-x-2 @else space-x-4 @endif ml-2">
+                    <li><a href="{{ route('proverbs.index') }}" class="hover:underline text-blue-100 hover:text-yellow-300 transition">トップ</a></li>
+                    <li><a href="{{ route('proverbs.by-type', 'ことわざ') }}" class="hover:underline text-blue-100 hover:text-yellow-300 transition">ことわざ</a></li>
+                    <li><a href="{{ route('proverbs.by-type', '四字熟語') }}" class="hover:underline text-blue-100 hover:text-yellow-300 transition">四字熟語</a></li>
+                    <li><a href="{{ route('proverbs.by-type', '慣用句') }}" class="hover:underline text-blue-100 hover:text-yellow-300 transition">慣用句</a></li>
+                    <li><a href="{{ route('proverbs.search') }}" class="hover:underline text-blue-100 hover:text-yellow-300 transition">検索</a></li>
                 </ul>
             </div>
 
             <!-- 百人一首セクション -->
             <div>
                 <span class="font-semibold text-yellow-300">【百人一首】</span>
-                <ul class="inline-flex @if($agent->isMobile()) space-x-2 @else space-x-3 @endif ml-2">
-                    <li><a href="{{ route('hyakuninisshu.index') }}" class="hover:underline text-blue-100 hover:text-yellow-300">百人一首</a></li>
-                    <li><a href="{{ route('poets.index') }}" class="hover:underline text-blue-100 hover:text-yellow-300">歌人</a></li>
-                    <li><a href="{{ route('hyakuninisshu.popular') }}" class="hover:underline text-blue-100 hover:text-yellow-300">人気</a></li>
-                    <li><a href="{{ route('hyakuninisshu.search') }}" class="hover:underline text-blue-100 hover:text-yellow-300">検索</a></li>
+                <ul class="inline-flex @if($agent->isMobile()) space-x-2 @else space-x-4 @endif ml-2">
+                    <li><a href="{{ route('hyakuninisshu.index') }}" class="hover:underline text-blue-100 hover:text-yellow-300 transition">百人一首</a></li>
+                    <li><a href="{{ route('poets.index') }}" class="hover:underline text-blue-100 hover:text-yellow-300 transition">歌人</a></li>
+                    <li><a href="{{ route('hyakuninisshu.popular') }}" class="hover:underline text-blue-100 hover:text-yellow-300 transition">人気</a></li>
+                    <li><a href="{{ route('hyakuninisshu.search') }}" class="hover:underline text-blue-100 hover:text-yellow-300 transition">検索</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 </header>
 
-    <main class="container mx-auto px-4 py-6">
+    <main class="container mx-auto px-4 py-8">
         @yield('content')
     </main>
 
