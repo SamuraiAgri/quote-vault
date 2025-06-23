@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Poet extends Model
 {
     use HasFactory;
-
+    protected $table = 'm_poets';
     protected $fillable = [
         'name',
         'reading',

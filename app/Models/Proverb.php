@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Proverb extends Model
 {
     use HasFactory;
-
+    protected $table = 't_proverbs';
     protected $fillable = [
         'word',
         'reading',

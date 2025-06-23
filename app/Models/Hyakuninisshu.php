@@ -9,8 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Hyakuninisshu extends Model
 {
     use HasFactory;
-
-    protected $table = 'hyakuninisshu';
+    protected $table = 't_hyakuninisshu';
 
     protected $fillable = [
         'number',
