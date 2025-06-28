@@ -1630,6 +1630,7 @@ class QuotesSeeder extends Seeder
                 'quote_text' => $quote['quote_text'],
                 'quote_furigana' => $quote['quote_furigana'],
                 'category_id' => $quote['category_id'],
+                'access_count' => rand(0, 100),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

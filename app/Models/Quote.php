@@ -18,7 +18,7 @@ class Quote extends Model
         'author_id',
         'category_id',
         'last_accessed_at',
-        'popular_score',
+        'access_count',
     ];
 
     public function author()
@@ -33,14 +33,14 @@ class Quote extends Model
         // アクセス数を増やすメソッド
     public function incrementAccessCount()
     {
-        $this->increment('popular_score');
+        $this->increment('access_count');
         $this->update(['last_accessed_at' => now()]);
     }
 
     // 人気順スコープ
     public function scopePopular($query)
     {
-        return $query->orderBy('popular_score', 'desc');
+        return $query->orderBy('access_count', 'desc');
     }
 
     // 最近アクセスされたもののスコープ

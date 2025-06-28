@@ -45,7 +45,7 @@ class CreateTablesForQuotes extends Migration
             $table->foreignId('author_id')->constrained('m_authors')->onDelete('cascade');
             $table->foreignId('category_id')->constrained('m_categories')->onDelete('cascade');
             $table->timestamp('last_accessed_at')->nullable()->comment('最終アクセス日時');
-            $table->integer('popular_score')->default(0)->comment('人気スコア');
+            $table->integer('access_count')->default(0)->comment('人気スコア');
             $table->timestamps();
         });
     }
