@@ -70,6 +70,10 @@
     
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     
+    {{-- Google AdSense --}}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8001546494492220"
+     crossorigin="anonymous"></script>
+    
     {{-- Google Analytics（本番環境で有効化） --}}
     {{-- 
     @if(app()->environment('production'))
