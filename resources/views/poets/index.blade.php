@@ -5,6 +5,13 @@
 
 @section('content')
     <div class="container mx-auto px-4">
+        {{-- パンくずリスト --}}
+        @include('components.breadcrumbs', ['breadcrumbs' => [
+            ['name' => 'ホーム', 'url' => route('home')],
+            ['name' => '百人一首', 'url' => route('hyakuninisshu.index')],
+            ['name' => '歌人一覧']
+        ]])
+
         <!-- ページタイトル -->
         <h1 class="text-3xl font-bold text-center mb-6">歌人一覧</h1>
         <p class="text-gray-600 text-center mb-8">百人一首に登場する歌人たちの一覧です。</p>

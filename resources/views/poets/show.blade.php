@@ -5,6 +5,14 @@
 
 @section('content')
     <div class="container mx-auto px-4">
+        {{-- パンくずリスト --}}
+        @include('components.breadcrumbs', ['breadcrumbs' => [
+            ['name' => 'ホーム', 'url' => route('home')],
+            ['name' => '百人一首', 'url' => route('hyakuninisshu.index')],
+            ['name' => '歌人一覧', 'url' => route('poets.index')],
+            ['name' => $poet->name]
+        ]])
+
         <!-- 歌人情報 -->
         <div class="bg-white shadow rounded-lg p-6 mb-8 text-center">
             <h1 class="text-3xl font-bold text-blue-800 mb-4">{{ $poet->name }}</h1>

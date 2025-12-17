@@ -5,6 +5,14 @@
 
 @section('content')
     <div class="container mx-auto px-4">
+        {{-- パンくずリスト --}}
+        @include('components.breadcrumbs', ['breadcrumbs' => [
+            ['name' => 'ホーム', 'url' => route('home')],
+            ['name' => 'ことわざ・四字熟語', 'url' => route('proverbs.index')],
+            ['name' => $proverb->type, 'url' => route('proverbs.by-type', $proverb->type)],
+            ['name' => $proverb->word]
+        ]])
+
         <!-- ことわざ・四字熟語の詳細 -->
         <div class="bg-white shadow rounded-lg p-6 mb-8 text-center">
             <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded mb-4">{{ $proverb->type }}</span>

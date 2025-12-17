@@ -5,6 +5,13 @@
 
 @section('content')
     <div class="container mx-auto px-4">
+        {{-- パンくずリスト --}}
+        @include('components.breadcrumbs', ['breadcrumbs' => [
+            ['name' => 'ホーム', 'url' => route('home')],
+            ['name' => '百人一首', 'url' => route('hyakuninisshu.index')],
+            ['name' => $season . 'の歌']
+        ]])
+
         <!-- ページタイトル -->
         <h1 class="text-3xl font-bold text-center mb-6">{{ $season }}の歌</h1>
 

@@ -5,6 +5,13 @@
 
 @section('content')
     <div class="container mx-auto px-4">
+        {{-- パンくずリスト --}}
+        @include('components.breadcrumbs', ['breadcrumbs' => [
+            ['name' => 'ホーム', 'url' => route('home')],
+            ['name' => 'ことわざ・四字熟語', 'url' => route('proverbs.index')],
+            ['name' => $typeName]
+        ]])
+
         <!-- ページタイトル -->
         <h1 class="text-3xl font-bold text-center mb-6">{{ $typeName }}一覧</h1>
 

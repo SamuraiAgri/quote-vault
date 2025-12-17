@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\HasAccessTracking;
 
 class Quote extends Model
 {
-    use HasFactory;
+    use HasFactory, HasAccessTracking;
 
     protected $table = 't_quotes';
 
@@ -21,6 +22,10 @@ class Quote extends Model
         'access_count',
     ];
 
+    protected $dates = [
+        'last_accessed_at',
+    ];
+
     public function author()
     {
         return $this->belongsTo(Author::class, 'author_id');
@@ -30,33 +35,21 @@ class Quote extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
-        // アクセス数を増やすメソッド
-    public function incrementAccessCount()
-    {
-        $this->increment('access_count');
-        $this->update(['last_accessed_at' => now()]);
-    }
 
-    // 人気順スコープ
-    public function scopePopular($query)
+    /**
+     * 検索スコープ
+     * セキュリティ改善: パラメータバインディングを使用
+     */
+    public function scopeSearch($query, string $keyword)
     {
-        return $query->orderBy('access_count', 'desc');
-    }
-
-    // 最近アクセスされたもののスコープ
-    public function scopeRecentlyAccessed($query)
-    {
-        return $query->whereNotNull('last_accessed_at')
-                    ->orderBy('last_accessed_at', 'desc');
-    }
-
-    // 検索スコープ
-    public function scopeSearch($query, $keyword)
-    {
-        return $query->where(function($q) use ($keyword) {
-            $q->where('quote_text', 'like', "%{$keyword}%")
-              ->orWhereHas('author', function($authorQuery) use ($keyword) {
-                  $authorQuery->where('name', 'like', "%{$keyword}%");
+        $searchTerm = '%' . addcslashes($keyword, '%_') . '%';
+        
+        return $query->where(function($q) use ($searchTerm) {
+            $q->where('quote_text', 'like', $searchTerm)
+              ->orWhere('quote_furigana', 'like', $searchTerm)
+              ->orWhereHas('author', function($authorQuery) use ($searchTerm) {
+                  $authorQuery->where('name', 'like', $searchTerm)
+                              ->orWhere('furigana', 'like', $searchTerm);
               });
         });
     }

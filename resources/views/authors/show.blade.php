@@ -4,6 +4,14 @@
 
 @section('content')
     <div class="container mx-auto px-4">
+        {{-- パンくずリスト --}}
+        @include('components.breadcrumbs', ['breadcrumbs' => [
+            ['name' => 'ホーム', 'url' => route('home')],
+            ['name' => '名言・格言', 'url' => route('largecategories.index')],
+            ['name' => '著者一覧', 'url' => route('authors.index')],
+            ['name' => $author->name]
+        ]])
+
         <!-- 著者情報 -->
         <div class="bg-white shadow rounded-lg p-6 mb-8 text-center">
             <h1 class="text-3xl font-bold text-blue-800 mb-4">{{ $author->name }}</h1>

@@ -4,11 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\HasAccessTracking;
 
 class Proverb extends Model
 {
-    use HasFactory;
+    use HasFactory, HasAccessTracking;
+
     protected $table = 't_proverbs';
+    
     protected $fillable = [
         'word',
         'reading',
@@ -29,35 +32,33 @@ class Proverb extends Model
         return $this->belongsTo(ProverbCategory::class, 'category_id');
     }
 
-    // アクセス数を増やすメソッド
-    public function incrementAccessCount()
-    {
-        $this->increment('access_count');
-        $this->update(['last_accessed_at' => now()]);
-    }
-
-    // 人気順スコープ
-    public function scopePopular($query)
-    {
-        return $query->orderBy('access_count', 'desc');
-    }
-
-    // 最近アクセスされたもののスコープ
-    public function scopeRecentlyAccessed($query)
-    {
-        return $query->whereNotNull('last_accessed_at')
-                    ->orderBy('last_accessed_at', 'desc');
-    }
-
-    // 種類別スコープ
-    public function scopeByType($query, $type)
+    /**
+     * 種類別スコープ
+     */
+    public function scopeByType($query, string $type)
     {
         return $query->where('type', $type);
     }
 
-    // 検索スコープ
-    public function scopeSearch($query, $keyword)
+    /**
+     * 検索スコープ
+     * フルテキスト検索が失敗した場合はLIKE検索にフォールバック
+     */
+    public function scopeSearch($query, string $keyword)
     {
-        return $query->whereRaw('MATCH(word, reading, meaning) AGAINST(? IN NATURAL LANGUAGE MODE)', [$keyword]);
+        try {
+            return $query->whereRaw(
+                'MATCH(word, reading, meaning) AGAINST(? IN NATURAL LANGUAGE MODE)', 
+                [$keyword]
+            );
+        } catch (\Exception $e) {
+            // フルテキスト検索が使えない場合はLIKE検索
+            $searchTerm = '%' . addcslashes($keyword, '%_') . '%';
+            return $query->where(function($q) use ($searchTerm) {
+                $q->where('word', 'like', $searchTerm)
+                  ->orWhere('reading', 'like', $searchTerm)
+                  ->orWhere('meaning', 'like', $searchTerm);
+            });
+        }
     }
 }

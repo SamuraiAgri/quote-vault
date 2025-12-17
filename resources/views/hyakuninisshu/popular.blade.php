@@ -5,6 +5,13 @@
 
 @section('content')
     <div class="container mx-auto px-4">
+        {{-- パンくずリスト --}}
+        @include('components.breadcrumbs', ['breadcrumbs' => [
+            ['name' => 'ホーム', 'url' => route('home')],
+            ['name' => '百人一首', 'url' => route('hyakuninisshu.index')],
+            ['name' => '人気ランキング']
+        ]])
+
         <h1 class="text-3xl font-semibold mb-6 text-center">人気の百人一首ランキング</h1>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

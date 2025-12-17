@@ -5,6 +5,13 @@
 
 @section('content')
     <div class="container mx-auto px-4">
+        {{-- パンくずリスト --}}
+        @include('components.breadcrumbs', ['breadcrumbs' => [
+            ['name' => 'ホーム', 'url' => route('home')],
+            ['name' => 'ことわざ・四字熟語', 'url' => route('proverbs.index')],
+            ['name' => '人気ランキング']
+        ]])
+
         <h1 class="text-3xl font-semibold mb-6 text-center">人気のことわざ・四字熟語ランキング</h1>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -1,2 +1,30 @@
+# robots.txt for quote-vault
+# すべてのクローラーに対する設定
 User-agent: *
-Disallow:
+Allow: /
+
+# サイトマップの場所（本番環境のドメインに変更してください）
+Sitemap: https://your-domain.com/sitemap.xml
+
+# クロール不要のパス
+Disallow: /admin/
+Disallow: /api/
+Disallow: /storage/
+Disallow: /vendor/
+Disallow: /_debugbar/
+
+# 検索結果ページは重複コンテンツ防止のため除外
+Disallow: /search?
+Disallow: /proverbs/search?
+Disallow: /hyakuninisshu/search?
+
+# クロール頻度の制御（サーバー負荷軽減）
+Crawl-delay: 1
+
+# Googlebot向け設定
+User-agent: Googlebot
+Crawl-delay: 0
+
+# Bingbot向け設定
+User-agent: Bingbot
+Crawl-delay: 1

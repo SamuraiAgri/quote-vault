@@ -4,6 +4,13 @@
 
 @section('content')
     <div class="container mx-auto px-4">
+        {{-- パンくずリスト --}}
+        @include('components.breadcrumbs', ['breadcrumbs' => [
+            ['name' => 'ホーム', 'url' => route('home')],
+            ['name' => '名言・格言', 'url' => route('largecategories.index')],
+            ['name' => $largeCategory->name]
+        ]])
+
         <!-- 大カテゴリ名 -->
         <h1 class="text-3xl font-bold text-center mb-6">{{ $largeCategory->name }}</h1>
 
