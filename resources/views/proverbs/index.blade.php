@@ -1,5 +1,5 @@
 {{-- resources/views/proverbs/index.blade.php --}}
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', 'ことわざ・四字熟語・慣用句')
 

@@ -1,5 +1,5 @@
 {{-- resources/views/hyakuninisshu/by-theme.blade.php --}}
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', $theme . 'の歌 - 百人一首')
 

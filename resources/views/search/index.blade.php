@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', $keyword ? '「' . $keyword . '」の検索結果' : '検索')
 

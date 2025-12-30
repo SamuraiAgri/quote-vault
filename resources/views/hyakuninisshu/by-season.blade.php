@@ -1,5 +1,5 @@
 {{-- resources/views/hyakuninisshu/by-season.blade.php --}}
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', $season . 'の歌 - 百人一首')
 

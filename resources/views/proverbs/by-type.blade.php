@@ -1,5 +1,5 @@
 {{-- resources/views/proverbs/by-type.blade.php --}}
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', $typeName . '一覧')
 

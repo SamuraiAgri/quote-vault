@@ -1,5 +1,5 @@
 {{-- resources/views/poets/index.blade.php --}}
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', '歌人一覧')
 

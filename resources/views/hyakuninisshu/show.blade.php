@@ -1,5 +1,5 @@
 {{-- resources/views/hyakuninisshu/show.blade.php --}}
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', '第' . $poem->number . '番 - ' . $poem->poet->name)
 

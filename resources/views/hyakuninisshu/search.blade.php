@@ -1,5 +1,5 @@
 {{-- resources/views/hyakuninisshu/search.blade.php --}}
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', '百人一首検索')
 

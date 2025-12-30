@@ -1,5 +1,5 @@
 {{-- resources/views/hyakuninisshu/popular.blade.php --}}
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', '人気の百人一首ランキング')
 

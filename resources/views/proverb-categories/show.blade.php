@@ -1,5 +1,5 @@
 {{-- resources/views/proverb-categories/show.blade.php --}}
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', $category->name . ' - ことわざ・四字熟語')
 

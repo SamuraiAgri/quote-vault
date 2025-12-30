@@ -1,5 +1,5 @@
 {{-- resources/views/pages/contact.blade.php --}}
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', 'お問い合わせ - 名言・格言・ことわざ・百人一首サイト')
 

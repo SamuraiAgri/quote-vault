@@ -1,5 +1,5 @@
 {{-- resources/views/proverbs/show.blade.php --}}
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', $proverb->word)
 

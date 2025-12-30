@@ -66,10 +66,10 @@ class SearchController extends Controller
     private function searchQuotesPaginated(string $keyword): LengthAwarePaginator
     {
         return Quote::search($keyword)
-                    ->with(['author', 'category'])
-                    ->orderByDesc('access_count')
-                    ->paginate(self::PER_PAGE)
-                    ->withQueryString();
+            ->with(['author', 'category'])
+            ->orderByDesc('access_count')
+            ->paginate(self::PER_PAGE)
+            ->withQueryString();
     }
 
     /**
@@ -79,10 +79,10 @@ class SearchController extends Controller
     {
         try {
             return Proverb::search($keyword)
-                          ->with('category')
-                          ->orderByDesc('access_count')
-                          ->paginate(self::PER_PAGE)
-                          ->withQueryString();
+                ->with('category')
+                ->orderByDesc('access_count')
+                ->paginate(self::PER_PAGE)
+                ->withQueryString();
         } catch (\Exception $e) {
             return new LengthAwarePaginator([], 0, self::PER_PAGE);
         }
@@ -95,10 +95,10 @@ class SearchController extends Controller
     {
         try {
             return Hyakuninisshu::search($keyword)
-                                ->with('poet')
-                                ->orderByDesc('access_count')
-                                ->paginate(self::PER_PAGE)
-                                ->withQueryString();
+                ->with('poet')
+                ->orderByDesc('access_count')
+                ->paginate(self::PER_PAGE)
+                ->withQueryString();
         } catch (\Exception $e) {
             return new LengthAwarePaginator([], 0, self::PER_PAGE);
         }
@@ -112,10 +112,10 @@ class SearchController extends Controller
     {
         return [
             'quotes' => Quote::search($keyword)
-                             ->with(['author', 'category'])
-                             ->orderByDesc('access_count')
-                             ->paginate(6, ['*'], 'quotes_page')
-                             ->withQueryString(),
+                ->with(['author', 'category'])
+                ->orderByDesc('access_count')
+                ->paginate(6, ['*'], 'quotes_page')
+                ->withQueryString(),
             'proverbs' => $this->safeSearchProverbs($keyword, $request),
             'poems' => $this->safeSearchPoems($keyword, $request),
         ];
@@ -125,10 +125,10 @@ class SearchController extends Controller
     {
         try {
             return Proverb::search($keyword)
-                          ->with('category')
-                          ->orderByDesc('access_count')
-                          ->paginate(6, ['*'], 'proverbs_page')
-                          ->withQueryString();
+                ->with('category')
+                ->orderByDesc('access_count')
+                ->paginate(6, ['*'], 'proverbs_page')
+                ->withQueryString();
         } catch (\Exception $e) {
             return new LengthAwarePaginator([], 0, 6);
         }
@@ -138,18 +138,12 @@ class SearchController extends Controller
     {
         try {
             return Hyakuninisshu::search($keyword)
-                                ->with('poet')
-                                ->orderByDesc('access_count')
-                                ->paginate(6, ['*'], 'poems_page')
-                                ->withQueryString();
+                ->with('poet')
+                ->orderByDesc('access_count')
+                ->paginate(6, ['*'], 'poems_page')
+                ->withQueryString();
         } catch (\Exception $e) {
             return new LengthAwarePaginator([], 0, 6);
-        }
-    }
-}
-                                ->get();
-        } catch (\Exception $e) {
-            return collect();
         }
     }
 }

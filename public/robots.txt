@@ -3,8 +3,8 @@
 User-agent: *
 Allow: /
 
-# サイトマップの場所（本番環境のドメインに変更してください）
-Sitemap: https://your-domain.com/sitemap.xml
+# サイトマップの場所
+Sitemap: https://quote-vault.jp/sitemap.xml
 
 # クロール不要のパス
 Disallow: /admin/
@@ -24,7 +24,9 @@ Crawl-delay: 1
 # Googlebot向け設定
 User-agent: Googlebot
 Crawl-delay: 0
+Allow: /
 
 # Bingbot向け設定
 User-agent: Bingbot
 Crawl-delay: 1
+Allow: /

@@ -1,5 +1,5 @@
 {{-- resources/views/poets/show.blade.php --}}
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', $poet->name)
 

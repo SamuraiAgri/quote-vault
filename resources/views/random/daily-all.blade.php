@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', '今日の名言・ことわざ・百人一首 | 毎日更新')
 

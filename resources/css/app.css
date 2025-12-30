@@ -2,31 +2,262 @@
 @tailwind components;
 @tailwind utilities;
 
-/* スクリーンリーダー専用クラス（アクセシビリティ） */
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
+/* ========================================
+   Base Layer - カスタムベーススタイル
+   ======================================== */
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+        @apply text-gray-800 bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-screen;
+    }
+
+    /* 和文フォントの最適化 */
+    :lang(ja) {
+        font-feature-settings: "palt";
+        line-height: 1.8;
+    }
+
+    /* 見出しのフォントウェイト */
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-bold;
+        font-feature-settings: "palt";
+    }
+
+    /* リンクのデフォルトスタイル */
+    a {
+        @apply transition-colors duration-200;
+    }
+
+    /* フォーム要素 */
+    input, textarea, select {
+        @apply outline-none;
+    }
 }
 
-.sr-only.focus\:not-sr-only:focus {
-    position: static;
-    width: auto;
-    height: auto;
-    padding: inherit;
-    margin: inherit;
-    overflow: visible;
-    clip: auto;
-    white-space: normal;
+/* ========================================
+   Components Layer - 再利用可能なコンポーネント
+   ======================================== */
+@layer components {
+    /* プライマリボタン */
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl shadow-lg shadow-blue-600/25 transition-all duration-300 hover:shadow-xl hover:shadow-blue-600/30 hover:-translate-y-0.5;
+    }
+
+    /* セカンダリボタン */
+    .btn-secondary {
+        @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-white hover:bg-gray-50 text-gray-700 font-medium rounded-xl border border-gray-200 shadow-sm transition-all duration-300 hover:shadow-md;
+    }
+
+    /* アウトラインボタン */
+    .btn-outline {
+        @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-transparent text-blue-600 font-medium rounded-xl border-2 border-blue-600 transition-all duration-300 hover:bg-blue-600 hover:text-white;
+    }
+
+    /* カード基本スタイル */
+    .card {
+        @apply bg-white rounded-2xl shadow-md border border-gray-100 transition-all duration-300;
+    }
+
+    .card-hover {
+        @apply hover:shadow-xl hover:-translate-y-1;
+    }
+
+    /* グラデーションカード */
+    .card-gradient-blue {
+        @apply bg-gradient-to-br from-blue-500 to-indigo-600 text-white;
+    }
+
+    .card-gradient-purple {
+        @apply bg-gradient-to-br from-purple-500 to-indigo-600 text-white;
+    }
+
+    .card-gradient-green {
+        @apply bg-gradient-to-br from-green-500 to-emerald-600 text-white;
+    }
+
+    .card-gradient-amber {
+        @apply bg-gradient-to-br from-amber-500 to-orange-600 text-white;
+    }
+
+    /* バッジ */
+    .badge {
+        @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+    }
+
+    .badge-blue {
+        @apply bg-blue-100 text-blue-700;
+    }
+
+    .badge-green {
+        @apply bg-green-100 text-green-700;
+    }
+
+    .badge-purple {
+        @apply bg-purple-100 text-purple-700;
+    }
+
+    .badge-amber {
+        @apply bg-amber-100 text-amber-700;
+    }
+
+    /* セクションタイトル */
+    .section-title {
+        @apply text-2xl font-bold text-gray-900 flex items-center gap-3;
+    }
+
+    .section-title-icon {
+        @apply w-10 h-10 rounded-xl flex items-center justify-center;
+    }
+
+    /* 引用符装飾 */
+    .quote-decoration {
+        @apply relative;
+    }
+
+    .quote-decoration::before {
+        content: '"';
+        @apply absolute -top-4 -left-4 text-6xl text-gray-200 font-serif;
+    }
+
+    /* テキストトランケート */
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .line-clamp-4 {
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 }
 
-/* パフォーマンス最適化：画像の遅延読み込み */
+/* ========================================
+   Utilities Layer - ユーティリティクラス
+   ======================================== */
+@layer utilities {
+    /* スクリーンリーダー専用 */
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
+
+    .sr-only.focus\:not-sr-only:focus {
+        position: static;
+        width: auto;
+        height: auto;
+        padding: inherit;
+        margin: inherit;
+        overflow: visible;
+        clip: auto;
+        white-space: normal;
+    }
+
+    /* グラスモーフィズム */
+    .glass {
+        @apply bg-white/80 backdrop-blur-lg border border-white/20;
+    }
+
+    .glass-dark {
+        @apply bg-gray-900/80 backdrop-blur-lg border border-gray-700/50;
+    }
+
+    /* テキストグラデーション */
+    .text-gradient {
+        @apply bg-clip-text text-transparent;
+    }
+
+    .text-gradient-blue {
+        @apply bg-gradient-to-r from-blue-600 to-indigo-600;
+    }
+
+    .text-gradient-purple {
+        @apply bg-gradient-to-r from-purple-600 to-pink-600;
+    }
+
+    /* スクロールスナップ */
+    .snap-x-mandatory {
+        scroll-snap-type: x mandatory;
+    }
+
+    .snap-start {
+        scroll-snap-align: start;
+    }
+
+    /* ホバーエフェクト */
+    .hover-lift {
+        @apply transition-transform duration-300 hover:-translate-y-1;
+    }
+
+    .hover-scale {
+        @apply transition-transform duration-300 hover:scale-105;
+    }
+
+    /* スムーズなスクロール位置調整 */
+    .scroll-mt-safe {
+        scroll-margin-top: 100px;
+    }
+}
+
+/* ========================================
+   アニメーション
+   ======================================== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* スケルトンローディング */
+.skeleton {
+    @apply bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 bg-[length:200%_100%] animate-pulse;
+}
+
+/* ========================================
+   パフォーマンス最適化
+   ======================================== */
+/* 画像の遅延読み込み */
 img[loading="lazy"] {
     opacity: 0;
     transition: opacity 0.3s;
@@ -34,4 +265,46 @@ img[loading="lazy"] {
 
 img[loading="lazy"].loaded {
     opacity: 1;
+}
+
+/* GPU加速 */
+.gpu-accelerate {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* ========================================
+   レスポンシブ調整
+   ======================================== */
+@media (max-width: 640px) {
+    /* モバイルでの余白調整 */
+    .container {
+        @apply px-4;
+    }
+
+    /* モバイルでのフォントサイズ調整 */
+    h1 {
+        @apply text-2xl;
+    }
+
+    h2 {
+        @apply text-xl;
+    }
+}
+
+/* ========================================
+   プリント用スタイル
+   ======================================== */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+
+    body {
+        @apply bg-white text-black;
+    }
+
+    a {
+        @apply text-black underline;
+    }
 }

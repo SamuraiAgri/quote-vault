@@ -1,5 +1,5 @@
 {{-- resources/views/proverbs/popular.blade.php --}}
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', '人気のことわざ・四字熟語ランキング')
 
