@@ -97,6 +97,15 @@ Route::get('/poets', [PoetController::class, 'index'])->name('poets.index');
 // 歌人詳細
 Route::get('/poets/{id}', [PoetController::class, 'show'])->name('poets.show');
 
+// === 特集ページ ===
+Route::get('/features', [App\Http\Controllers\FeatureController::class, 'index'])->name('features.index');
+Route::get('/features/work', [App\Http\Controllers\FeatureController::class, 'work'])->name('features.work');
+Route::get('/features/love', [App\Http\Controllers\FeatureController::class, 'love'])->name('features.love');
+Route::get('/features/encouragement', [App\Http\Controllers\FeatureController::class, 'encouragement'])->name('features.encouragement');
+Route::get('/features/life', [App\Http\Controllers\FeatureController::class, 'life'])->name('features.life');
+Route::get('/features/speech', [App\Http\Controllers\FeatureController::class, 'speech'])->name('features.speech');
+Route::get('/features/proverbs', [App\Http\Controllers\FeatureController::class, 'proverbs'])->name('features.proverbs');
+
 // === 静的ページ ===
 // プライバシーポリシー
 Route::get('/privacy', [PageController::class, 'privacy'])->name('privacy');
@@ -109,3 +118,7 @@ Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
 // XMLサイトマップ
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+
+// === ヘルスチェック ===
+Route::get('/health', [App\Http\Controllers\HealthController::class, 'check'])->name('health.check');
+Route::get('/health/detailed', [App\Http\Controllers\HealthController::class, 'detailed'])->name('health.detailed');

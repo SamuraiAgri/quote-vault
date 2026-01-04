@@ -45,22 +45,23 @@
         @yield('structured_data')
     @else
         <script type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "WebSite",
-                "name": "Quote Vault - 名言・格言・ことわざ・百人一首",
-                "url": "{{ url('/') }}",
-                "description": "偉人の名言・格言、日本の伝統的なことわざ・四字熟語・慣用句、百人一首を検索できるサイト",
-                "potentialAction": {
-                    "@type": "SearchAction",
-                    "target": "{{ route('search.index') }}?query={search_term_string}",
-                    "query-input": "required name=search_term_string"
+                {
+                    "@context": "https://schema.org",
+                    "@type": "WebSite",
+                    "name": "Quote Vault - 名言・格言・ことわざ・百人一首",
+                    "url": "{{ url('/') }}",
+                    "description": "偉人の名言・格言、日本の伝統的なことわざ・四字熟語・慣用句、百人一首を検索できるサイト",
+                    "potentialAction": {
+                        "@type": "SearchAction",
+                        "target": "{{ route('search.index') }}?query={search_term_string}",
+                        "query-input": "required name=search_term_string"
+                    }
                 }
-            }
-            </script>
+                </script>
     @endif
 
     {{-- Favicon --}}
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">

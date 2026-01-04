@@ -10,41 +10,41 @@
 
 @section('structured_data')
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Quote Vault - 名言・格言・ことわざ・百人一首",
-        "alternateName": "名言検索 Quote Vault",
-        "url": "{{ url('/') }}",
-        "description": "10万件以上の名言・格言、日本の伝統的なことわざ・四字熟語・慣用句、百人一首を検索できる無料サイト",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": {
-                "@type": "EntryPoint",
-                "urlTemplate": "{{ route('search.index') }}?q={search_term_string}"
-            },
-            "query-input": "required name=search_term_string"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Quote Vault",
-            "url": "{{ url('/') }}"
-        }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "CollectionPage",
-        "name": "名言・格言・ことわざ・百人一首コレクション",
-        "description": "偉人の名言、格言、ことわざ、四字熟語、百人一首を網羅したコレクション",
-        "url": "{{ url('/') }}",
-        "isPartOf": {
+        {
+            "@context": "https://schema.org",
             "@type": "WebSite",
-            "url": "{{ url('/') }}"
+            "name": "Quote Vault - 名言・格言・ことわざ・百人一首",
+            "alternateName": "名言検索 Quote Vault",
+            "url": "{{ url('/') }}",
+            "description": "10万件以上の名言・格言、日本の伝統的なことわざ・四字熟語・慣用句、百人一首を検索できる無料サイト",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": {
+                    "@type": "EntryPoint",
+                    "urlTemplate": "{{ route('search.index') }}?q={search_term_string}"
+                },
+                "query-input": "required name=search_term_string"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Quote Vault",
+                "url": "{{ url('/') }}"
+            }
         }
-    }
-    </script>
+        </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "名言・格言・ことわざ・百人一首コレクション",
+            "description": "偉人の名言、格言、ことわざ、四字熟語、百人一首を網羅したコレクション",
+            "url": "{{ url('/') }}",
+            "isPartOf": {
+                "@type": "WebSite",
+                "url": "{{ url('/') }}"
+            }
+        }
+        </script>
 @endsection
 
 @section('content')
@@ -116,6 +116,46 @@
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
+
+        {{-- 特集セクション --}}
+        <section>
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                    <span class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center">
+                        📚
+                    </span>
+                    おすすめ特集
+                </h2>
+                <a href="{{ route('features.index') }}"
+                    class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center gap-1 group">
+                    すべて見る
+                    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <a href="{{ route('features.work') }}"
+                    class="group block bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl p-6 text-white hover:shadow-xl transition-all">
+                    <span class="text-3xl mb-2 block">💼</span>
+                    <h3 class="font-bold text-lg mb-1">仕事で使える名言10選</h3>
+                    <p class="text-white/80 text-sm">ビジネスシーンでモチベーションを高める言葉</p>
+                </a>
+                <a href="{{ route('features.encouragement') }}"
+                    class="group block bg-gradient-to-r from-amber-500 to-orange-600 rounded-xl p-6 text-white hover:shadow-xl transition-all">
+                    <span class="text-3xl mb-2 block">🌟</span>
+                    <h3 class="font-bold text-lg mb-1">落ち込んだ時に読みたい名言</h3>
+                    <p class="text-white/80 text-sm">辛い時に心を癒す言葉</p>
+                </a>
+                <a href="{{ route('features.proverbs') }}"
+                    class="group block bg-gradient-to-r from-slate-500 to-gray-600 rounded-xl p-6 text-white hover:shadow-xl transition-all">
+                    <span class="text-3xl mb-2 block">📜</span>
+                    <h3 class="font-bold text-lg mb-1">座右の銘にしたいことわざ</h3>
+                    <p class="text-white/80 text-sm">人生の指針となる日本の知恵</p>
+                </a>
+            </div>
+        </section>
 
         {{-- 人気の名言セクション --}}
         <section>
