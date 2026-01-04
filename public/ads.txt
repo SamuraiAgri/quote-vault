@@ -1,5 +1,1 @@
-# Google AdSense
-# 以下の行は、Google AdSenseアカウント取得後に追加してください
-# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
-# 
-# pub-0000000000000000 の部分をご自身のパブリッシャーIDに置き換えてください
+google.com, pub-8001546494492220, DIRECT, f08c47fec0942fa0
